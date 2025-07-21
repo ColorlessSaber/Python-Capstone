@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{% block bouldering-title %}Bouldering{% endblock %}</title>
+</head>
+<body>
+<!-- TODO add in navbar -->
+    {% block body-content %}{% endblock %}
+    <footer>
+        <table>
+            <tr>
+                <td>
+                    <p>Bouldering Tracking Site</p>
+                </td>
+                <td>
+                    <p>Heilman, Michael</p>
+                </td>
+                <td>
+                    <p>Capstone Project</p>
+                </td>
+            </tr>
+        </table>
+    </footer>
+</body>
+
+</html>
