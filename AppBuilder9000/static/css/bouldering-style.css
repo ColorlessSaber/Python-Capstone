@@ -86,7 +86,7 @@ nav a:hover {
 }
 
 .header-container h1 {
-    font-family: var(--expletus-sans-font), serif;
+    font-family: var(--expletus-sans-font);
     font-size: 3vw;
     position: absolute;
     top: 50%;
@@ -104,6 +104,13 @@ nav a:hover {
     margin-top: -0.25vw;
     padding: 0.25vw 1.75vw; /* padding order: top and bottom, left and right */
     background-color: var(--secondary-color);
+}
+
+#about p {
+    font-size: 1.5vw;
+    letter-spacing: 0.1vw;
+    line-height: 2.5vw;
+    text-align: center;
 }
 
 /* *** End of about section styling *** */
@@ -125,6 +132,7 @@ nav a:hover {
     padding-top: 1.6%;
     height: 700px;
     padding-left: 1.5vw;
+    text-align: center;
 }
 
 .image-card img {
@@ -142,3 +150,54 @@ nav a:hover {
 }
 
 /* *** End of Weather section cards styling *** */
+
+/* *** Weather Table styling *** */
+
+#weather table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#weather tr, th {
+    font-size: 1vw;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#weather td {
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+}
+
+/* *** End of Weather Table styling *** */
+
+/* *** Footer styling *** */
+footer table {
+    width: 100%;
+    background-color: var(--third-color);
+}
+
+footer td {
+    text-align: center;
+}
+
+footer p {
+    font-family: var(--french-cannon-font);
+    font-size: 1.5vw;
+    font-weight: 400;
+    color: black;
+}
+
+footer td:nth-child(5) {
+    padding-left: 5vw;
+}
+
+footer img {
+    width: 25%;
+    height: auto;
+    margin-right: -10vw;
+    margin-left: -10vw;
+}
+
+/* *** Footer styling *** */
