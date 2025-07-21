@@ -6,10 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{% block bouldering-title %}Bouldering{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bouldering-style.css' %}">
 </head>
 <body>
-<!-- TODO add in navbar -->
+    <!--NavBar-->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#weather">Weather</a></li>
+            <li><a href="#Login">Login</a></li>
+        </ul>
+    </nav>
+    <!--header -- image with layover text-->
+    <div class="header-container">
+        <img class="header-image" src="{% static 'images/bouldering-page-images/climber-center.jpg' %}">
+        <div class="header-text">Welcome to the Outdoor Bouldering Tracking Site!</div>
+    </div>
+    <!--Main content-->
     {% block body-content %}{% endblock %}
+    <!-- Footer -->
     <footer>
         <table>
             <tr>
@@ -17,10 +33,16 @@
                     <p>Bouldering Tracking Site</p>
                 </td>
                 <td>
-                    <p>Heilman, Michael</p>
+                    <p>|</p> <!--Added a 'divider' for aesthetics reasons -->
                 </td>
                 <td>
-                    <p>Capstone Project</p>
+                    <img class="footer-image" src="{% static 'images/bouldering-page-images/carabiner-and-rope.jpg' %}">
+                </td>
+                <td>
+                    <p>|</p> <!--Added a 'divider' for aesthetics reasons -->
+                </td>
+                <td>
+                    <p>Heilman, Michael<br>Capstone Project</p>
                 </td>
             </tr>
         </table>

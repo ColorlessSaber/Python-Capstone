@@ -1,0 +1,14 @@
+/* The styling sheet for Michael Heilman's capstone project */
+
+/* global CSS variables */
+:root {
+    /* Color palette */
+    --main-color: #34CB75;
+    --secondary-color: #939C78;
+    --third-color: #5D6A38;
+    --fourth-color: #343829;
+}
+
+html {
+    scroll-behavior: smooth;
+}
