@@ -1,14 +1,144 @@
 /* The styling sheet for Michael Heilman's capstone project */
+/* Import font 'Expletus Sans* from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Import front 'IM Fell French Cancon SC' from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&display=swap');
 
 /* global CSS variables */
 :root {
     /* Color palette */
-    --main-color: #34CB75;
+    --hover-color: #34CB75;
     --secondary-color: #939C78;
     --third-color: #5D6A38;
     --fourth-color: #343829;
+    /* text fonts */
+    --expletus-sans-font: "Expletus Sans", sans-serif; /* font from google fonts */
+    --french-cannon-font:  "IM Fell French Canon SC", serif; /* font from google fonts */
 }
 
 html {
     scroll-behavior: smooth;
 }
+
+/* make all elements to include padding and border in element's total width and height */
+* {
+    box-sizing: border-box;
+}
+
+/* *** General Styling *** */
+body{
+    overflow-x: hidden;
+    margin: 0; /* ensures the site displays with no white borders */
+}
+
+h2 {
+    font-family: var(--french-cannon-font);
+    font-size: 2vw;
+    font-weight: 500;
+}
+
+/* *** End of General Styling *** */
+
+/* *** Navbar Styling *** */
+nav {
+    overflow: hidden;
+    background-color: var(--third-color);
+    position: fixed; /* keeps the navbar in the same position relative to the user scrolling */
+    top: 0; /* places navbar at the top of the browser screen */
+    width: 100%;
+    z-index: 1;
+}
+
+/* Styling for the navbar anchors */
+nav a {
+    float: left;
+    display: block;
+    padding: 0.75vw 1vw; /* padding order: top and bottom, left and right */
+    text-decoration: none;
+    font-family: var(--french-cannon-font);
+    font-size: 2vw;
+    font-weight: 400;
+    color: black;
+    text-align: center;
+}
+
+/* hover affect for the navbar */
+nav a:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+    transition: 0.5s ease-in;
+}
+
+/* *** End of Navbar Styling *** */
+
+/* *** Image with text overlay styling *** */
+.header-container {
+    position: relative;
+    text-align: center;
+    min-width: 100%;
+}
+
+.header-container img {
+    width: 100%;
+    height: auto;
+    margin: auto auto auto auto;
+}
+
+.header-container h1 {
+    font-family: var(--expletus-sans-font), serif;
+    font-size: 3vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(128, 128, 128, 0.8);
+    padding: 0.25vw 0.25vw; /* padding order: top and bottom, left and right */
+    margin-right: -25vw;
+}
+
+/* *** End of Image with text overlay styling *** */
+
+/* *** About section styling *** */
+#about {
+    margin-top: -0.25vw;
+    padding: 0.25vw 1.75vw; /* padding order: top and bottom, left and right */
+    background-color: var(--secondary-color);
+}
+
+/* *** End of about section styling *** */
+
+/* *** Weather section cards styling *** */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row{
+    background-color: var(--secondary-color);
+}
+
+.text-card {
+    float: left;
+    width: 50%;
+    padding-top: 1.6%;
+    height: 700px;
+    padding-left: 1.5vw;
+}
+
+.image-card img {
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+}
+
+.image-card {
+    display: flex;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 700px;
+}
+
+/* *** End of Weather section cards styling *** */

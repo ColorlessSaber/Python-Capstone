@@ -11,17 +11,15 @@
 <body>
     <!--NavBar-->
     <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#weather">Weather</a></li>
-            <li><a href="#Login">Login</a></li>
-        </ul>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#weather">Weather</a>
+        <a href="#Login">Login</a>
     </nav>
     <!--header -- image with layover text-->
     <div class="header-container">
-        <img class="header-image" src="{% static 'images/bouldering-page-images/climber-center.jpg' %}">
-        <div class="header-text">Welcome to the Outdoor Bouldering Tracking Site!</div>
+        <img src="{% static 'images/bouldering-page-images/climber-center-V2.jpg' %}" alt="photo of climber in the snowy mountain">
+        <div><h1>Welcome to the Outdoor Bouldering Site!</h1></div>
     </div>
     <!--Main content-->
     {% block body-content %}{% endblock %}
@@ -36,7 +34,7 @@
                     <p>|</p> <!--Added a 'divider' for aesthetics reasons -->
                 </td>
                 <td>
-                    <img class="footer-image" src="{% static 'images/bouldering-page-images/carabiner-and-rope.jpg' %}">
+                    <img class="footer-image" src="{% static 'images/bouldering-page-images/carabiner-and-rope.jpg' %}" alt="carabiner with rope">
                 </td>
                 <td>
                     <p>|</p> <!--Added a 'divider' for aesthetics reasons -->
