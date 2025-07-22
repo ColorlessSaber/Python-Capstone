@@ -18,6 +18,7 @@
 }
 
 html {
+    scroll-padding-top: 50px;
     scroll-behavior: smooth;
 }
 
@@ -36,6 +37,19 @@ h2 {
     font-family: var(--french-cannon-font);
     font-size: 2vw;
     font-weight: 500;
+}
+
+h3 {
+    font-family: var(--french-cannon-font);
+    font-size: 1.75vw;
+    font-weight: 500;
+    color: black;
+}
+
+p {
+    font-size: 1.5vw;
+    font-weight: 400;
+    color: black;
 }
 
 /* *** End of General Styling *** */
@@ -107,7 +121,6 @@ nav a:hover {
 }
 
 #about p {
-    font-size: 1.5vw;
     letter-spacing: 0.1vw;
     line-height: 2.5vw;
     text-align: center;
@@ -173,6 +186,13 @@ nav a:hover {
 /* *** End of Weather Table styling *** */
 
 /* *** Footer styling *** */
+
+footer {
+    clear: both;
+    width: 100%;
+    position: relative;
+}
+
 footer table {
     width: 100%;
     background-color: var(--third-color);
@@ -184,9 +204,6 @@ footer td {
 
 footer p {
     font-family: var(--french-cannon-font);
-    font-size: 1.5vw;
-    font-weight: 400;
-    color: black;
 }
 
 footer td:nth-child(5) {
@@ -201,3 +218,56 @@ footer img {
 }
 
 /* *** Footer styling *** */
+
+/* *** Form styling *** */
+
+.form-container {
+    padding-top: 75px;
+    padding-bottom: 30vh;
+    text-align: center;
+    background-color: var(--secondary-color);
+}
+
+#error-message {
+    color: red;
+}
+
+label {
+    font-family: var(--french-cannon-font);
+    font-size: 1.25vw;
+    font-weight: 400;
+}
+
+input[type='text'] {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1.25vw;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px; /* padding order: top, right, bottom, left */
+    border: 2px solid black;
+}
+
+input[type='text']:hover {
+    border: 2px solid var(--hover-color);
+    transition: opacity 1s ease-in-out;
+}
+
+input[type='text']:focus {
+    color: rgba(0, 0, 0, 1);
+}
+
+button {
+    font-family: var(--french-cannon-font);
+    font-size: 1.25vw;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+    transition: opacity 1s ease-in-out;
+}
+
+/* *** End of Form styling *** */

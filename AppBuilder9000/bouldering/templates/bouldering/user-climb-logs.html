@@ -1,0 +1,16 @@
+{% extends 'bouldering/base.html' %}
+{% load static %}
+
+{% block bouldering-title %}Bouldering - Climb Logs{% endblock %}
+{% block navbar %}
+<nav>
+  <a href="{% url 'bouldering-home' %}">Home</a>
+</nav>
+{% endblock %}
+{% block body-content %}
+<!-- Log-in form-->
+<div class="form-container">
+  <h2>Welcome back {{user}}!</h2>
+
+</div>
+{% endblock %}

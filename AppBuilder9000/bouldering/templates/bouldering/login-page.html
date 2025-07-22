@@ -1,0 +1,25 @@
+{% extends 'bouldering/base.html' %}
+{% load static %}
+
+{% block bouldering-title %}Bouldering - Login{% endblock %}
+{% block navbar %}
+<nav>
+  <a href="{% url 'bouldering-home' %}">Home</a>
+</nav>
+{% endblock %}
+{% block body-content %}
+<!-- Log-in form-->
+<div class="form-container">
+  <h3>Please enter your username and password</h3>
+  <p id="error-message">{{message}}</p>
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <button type="submit">Log-In</button>
+  </form>
+<!--Create a new account-->
+  <h3>Are you a new user?</h3>
+  <a href="{% url 'new-account' %}"><button type="button">Create New Account</button></a>
+</div>
+{% endblock %}

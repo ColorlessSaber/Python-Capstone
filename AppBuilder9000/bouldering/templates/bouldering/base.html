@@ -10,18 +10,15 @@
 </head>
 <body>
     <!--NavBar-->
+    {% block navbar %}
     <nav>
-        <a href="#">Home</a>
+        <a href="{% url 'bouldering-home' %}">Home</a>
         <a href="#about">About</a>
         <a href="#weather">Weather</a>
-        <a href="#Login">Login</a>
+        <a href="{% url 'login' %}">Login</a>
     </nav>
-    <!--header -- image with layover text-->
-    <div class="header-container">
-        <img src="{% static 'images/bouldering-page-images/climber-center-V2.jpg' %}" alt="photo of climber in the snowy mountain">
-        <div><h1>Welcome to the Outdoor Bouldering Site!</h1></div>
-    </div>
-    <!--Main content-->
+    {% endblock %}
+    <!--Header and main content-->
     {% block body-content %}{% endblock %}
     <!-- Footer -->
     <footer>
