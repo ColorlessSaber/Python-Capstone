@@ -4,13 +4,30 @@
 {% block bouldering-title %}Bouldering - Climb Logs{% endblock %}
 {% block navbar %}
 <nav>
-  <a href="{% url 'bouldering-home' %}">Home</a>
+  <a href="{% url 'bouldering-home' %}">Home/Log Out</a>
 </nav>
 {% endblock %}
 {% block body-content %}
-<!-- Log-in form-->
-<div class="form-container">
-  <h2>Welcome back {{user}}!</h2>
-
+<!-- User's climb log table-->
+<div class="climb-log-container">
+    <h2>Welcome back, {{user}}!</h2>
+    <a href="{% url 'new-climb-log' user_pk=user.pk %}"><button type="button">New Climb Log</button></a>
+    <a><button type="button">Delete a Climb Log</button></a>
+    <table class="log-table">
+        <tr>
+            <th>Date</th>
+            <th>Grade</th>
+            <th>Weather Condition</th>
+            <th>Location</th>
+        </tr>
+        {% for climb in climbs %}
+        <tr>
+            <td>{{climb.date}}</td>
+            <td>{{climb.grade}}</td>
+            <td>{{climb.weather_condition}}</td>
+            <td>{{climb.location}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}

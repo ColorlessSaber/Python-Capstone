@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import UserForm
-from .models import User
+from .forms import UserForm, ClimbLogForm
+from .models import User, ClimbLog
 # Create your views here.
 def bouldering_home(request):
     return render(request, 'bouldering/bouldering-home-page.html')
@@ -19,7 +19,7 @@ def login_page(request):
             if User.users.filter(username=form.cleaned_data['username'], password=form.cleaned_data['password']).exists() :
                 # pull user information and pass it along
                 user_details = User.users.get(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-                return load_user_climbs(request, user_details.pk)
+                return redirect('user-climb-logs', user_pk=user_details.pk)
             else:
                 # inform the user their username or password is incorrect
                 content = {'form': form, 'message': 'Username or password is incorrect'}
@@ -69,6 +69,31 @@ def load_user_climbs(request, user_pk):
     :return:
     """
     user_details = get_object_or_404(User, pk=user_pk)
-    print(user_details)
-    context = {'user': user_details}
+    user_climbs = ClimbLog.climb_logs.filter(user=user_details)
+    context = {'user': user_details, 'climbs': user_climbs}
     return render(request, 'bouldering/user-climb-logs.html', context)
+
+def create_new_climb_log(request, user_pk):
+    """
+    Creates a new climb log for a user.
+
+    :param request:
+    :param user_pk: The primary key that identifies the user in the database who logged in.
+    :return:
+    """
+    user_details = get_object_or_404(User, pk=user_pk)
+    form = ClimbLogForm(data=request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            # save the climb log and return user to their overall climb log
+            climb_log = form.save(commit=False)
+            climb_log.user = user_details # assign the user to the climb log they wish to save
+            climb_log.save()
+            return redirect('user-climb-logs', user_pk=user_details.pk)
+        else:
+            # if there is an error, take them back to the same screen
+            context = {'user': user_details, 'form': form, 'message': 'Something went wrong. Please try again.'}
+            return render(request, 'bouldering/new-climb-log.html', context)
+    else:
+        context = {'user': user_details, 'form': form, 'message': ''}
+        return render(request, 'bouldering/new-climb-log.html', context)

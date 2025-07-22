@@ -52,6 +52,21 @@ p {
     color: black;
 }
 
+button {
+    font-family: var(--french-cannon-font);
+    font-size: 1.25vw;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+    transition: opacity 1s ease-in-out;
+}
+
 /* *** End of General Styling *** */
 
 /* *** Navbar Styling *** */
@@ -164,26 +179,28 @@ nav a:hover {
 
 /* *** End of Weather section cards styling *** */
 
-/* *** Weather Table styling *** */
+/* *** Table styling *** */
 
-#weather table {
+table {
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-#weather tr, th {
+tr, th {
     font-size: 1vw;
     border: 1px solid black;
     text-align: center;
 }
 
-#weather td {
+td {
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
 }
 
-/* *** End of Weather Table styling *** */
+/* *** End of Table styling *** */
 
 /* *** Footer styling *** */
 
@@ -255,19 +272,25 @@ input[type='text']:focus {
     color: rgba(0, 0, 0, 1);
 }
 
-button {
-    font-family: var(--french-cannon-font);
-    font-size: 1.25vw;
-    border-radius: 5px;
-    border: 1px solid black;
-    cursor: pointer;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-}
-
-button:hover {
-    background-color: var(--hover-color);
-    transition: opacity 1s ease-in-out;
-}
-
 /* *** End of Form styling *** */
+
+/* *** Climb Log Styling *** */
+
+.climb-log-container {
+    padding-top: 75px;
+    padding-bottom: 30vh;
+    text-align: center;
+    background-color: var(--secondary-color);
+}
+
+.log-table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.climb-log-container button {
+    margin-bottom: 1vh;
+}
+
+/* *** End of Climb Log Styling *** */

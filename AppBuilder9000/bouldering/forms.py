@@ -9,4 +9,6 @@ class UserForm(ModelForm):
 class ClimbLogForm(ModelForm):
     class Meta:
         model = ClimbLog
-        fields = '__all__'
+        # not allowing user to enter 'user' entry for when the user submits the form
+        # they entry will be filled in the views.py
+        fields = ('date', 'grade', 'weather_condition', 'location')

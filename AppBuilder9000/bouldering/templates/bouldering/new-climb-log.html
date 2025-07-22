@@ -1,0 +1,20 @@
+{% extends 'bouldering/base.html' %}
+{% load static %}
+
+{% block bouldering-title %}Bouldering - New Climb Log{% endblock %}
+{% block navbar %}
+<nav>
+</nav>
+{% endblock %}
+{% block body-content %}
+<!-- User's climb log table-->
+<div class="form-container">
+    <h2>New climb log for {{user}}.</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Log Climb</button>
+        <a href="{% url 'user-climb-logs' user_pk=user.pk %}"><button type="button">Cancel</button></a>
+    </form>
+</div>
+{% endblock %}
