@@ -22,9 +22,9 @@
         </tr>
         {% for climb in climbs %}
         <tr>
-            <td>{{climb.date}}</td>
+            <td>{{climb.date | date:"D d M Y" }}</td>
             <td>{{climb.grade}}</td>
-            <td>{{climb.weather_condition}}</td>
+            <td>{{climb.weather_condition | capfirst}}</td>
             <td>{{climb.location}}</td>
         </tr>
         {% endfor %}

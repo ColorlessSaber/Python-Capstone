@@ -69,7 +69,7 @@ def load_user_climbs(request, user_pk):
     :return:
     """
     user_details = get_object_or_404(User, pk=user_pk)
-    user_climbs = ClimbLog.climb_logs.filter(user=user_details)
+    user_climbs = ClimbLog.climb_logs.filter(user=user_details).order_by('-date') # order records descending
     context = {'user': user_details, 'climbs': user_climbs}
     return render(request, 'bouldering/user-climb-logs.html', context)
 

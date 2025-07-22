@@ -31,6 +31,7 @@ html {
 body{
     overflow-x: hidden;
     margin: 0; /* ensures the site displays with no white borders */
+    background-color: var(--secondary-color);
 }
 
 h2 {
@@ -205,9 +206,9 @@ td {
 /* *** Footer styling *** */
 
 footer {
-    clear: both;
+    margin-top: 1.5vh;
     width: 100%;
-    position: relative;
+    bottom: 0;
 }
 
 footer table {
@@ -240,7 +241,6 @@ footer img {
 
 .form-container {
     padding-top: 75px;
-    padding-bottom: 30vh;
     text-align: center;
     background-color: var(--secondary-color);
 }
