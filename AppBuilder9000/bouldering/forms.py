@@ -11,4 +11,4 @@ class ClimbLogForm(ModelForm):
         model = ClimbLog
         # not allowing user to enter 'user' entry for when the user submits the form
         # they entry will be filled in the views.py
-        fields = ('date', 'grade', 'weather_condition', 'location')
+        fields = ('date', 'grade', 'weather_condition', 'location', 'notes')

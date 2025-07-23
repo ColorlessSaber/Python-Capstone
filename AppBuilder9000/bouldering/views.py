@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, ClimbLogForm
 from .models import User, ClimbLog
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Create your views here.
 def bouldering_home(request):
     return render(request, 'bouldering/bouldering-home-page.html')
@@ -123,3 +124,20 @@ def create_new_climb_log(request, user_pk):
     else:
         context = {'user': user_details, 'form': form, 'message': ''}
         return render(request, 'bouldering/new-climb-log.html', context)
+
+def load_climb_details(request, user_pk, climb_log_pk):
+    """
+    Loads the user's climb details in a line-by-line form.
+
+    :param request:
+    :param user_pk: The primary key that identifies the user in the database who logged in.
+    :param climb_log_pk: The climb log primary key that identifies the climb log.
+    :return:
+    """
+    user_details = get_object_or_404(User, pk=user_pk)
+    climb_log = get_object_or_404(ClimbLog, pk=climb_log_pk)
+    context = {
+        'user': user_details,
+        'climb_log': climb_log,
+    }
+    return render(request, 'bouldering/climb-log-details.html', context)

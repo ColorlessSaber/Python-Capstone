@@ -31,6 +31,7 @@
                 <th>Grade</th>
                 <th>Weather Condition</th>
                 <th>Location</th>
+                <th>Climb Details</th>
             </tr>
             {% for climb in climbs %}
             <tr>
@@ -38,6 +39,7 @@
                 <td>{{climb.grade}}</td>
                 <td>{{climb.weather_condition | capfirst}}</td>
                 <td>{{climb.location}}</td>
+                <td><a href="{% url 'climb-log-details' user_pk=user.pk climb_log_pk=climb.pk %}"><button type="button">Open Details</button></a></td>
             </tr>
             {% endfor %}
         </table>

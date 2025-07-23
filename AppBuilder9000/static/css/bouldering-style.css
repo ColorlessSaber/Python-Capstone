@@ -53,6 +53,21 @@ p {
     color: black;
 }
 
+/* text-boundary and text-wrap help keep the climb log notes wrapped in a box when the notes are too long */
+.text-boundary {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    border: 1px dashed black;
+}
+
+.text-wrap {
+    word-wrap: break-word;
+}
+
 button {
     font-family: var(--french-cannon-font);
     font-size: 1.25vw;
@@ -256,7 +271,7 @@ label {
     font-weight: 400;
 }
 
-input[type='text'] {
+input[type='text'], textarea {
     color: rgba(0, 0, 0, 0.6);
     font-size: 1.25vw;
     border-radius: 5px;
@@ -264,12 +279,12 @@ input[type='text'] {
     border: 2px solid black;
 }
 
-input[type='text']:hover {
+input[type='text']:hover, textarea:hover {
     border: 2px solid var(--hover-color);
     transition: opacity 1s ease-in-out;
 }
 
-input[type='text']:focus {
+input[type='text']:focus, textarea:focus {
     color: rgba(0, 0, 0, 1);
 }
 

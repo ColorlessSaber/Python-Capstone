@@ -40,6 +40,7 @@ class ClimbLog(models.Model):
     grade = models.CharField(max_length=10, choices=GRADE_OPTIONS)
     weather_condition = models.CharField(max_length=50, default="")
     location = models.CharField(max_length=70, default="", null=False)
+    notes = models.TextField(default="")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     climb_logs = models.Manager()

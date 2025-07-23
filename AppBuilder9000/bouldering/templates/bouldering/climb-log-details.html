@@ -1,0 +1,22 @@
+{% extends 'bouldering/base.html' %}
+{% load static %}
+
+{% block bouldering-title %}Bouldering - Climb Log Details{% endblock %}
+{% block navbar %}
+<nav>
+</nav>
+{% endblock %}
+{% block body-content %}
+<div class="climb-log-container">
+    <h2>Selected {{user}}'s climb log details</h2>
+    <p><b>Date:</b> {{climb_log.date | date:"D d M Y"}}</p>
+    <p><b>Grade:</b> {{climb_log.grade}}</p>
+    <p><b>Weather Condition:</b> {{climb_log.weather_condition}}</p>
+    <p><b>Location:</b> {{climb_log.location}}</p>
+    <p><b>Notes:</b></p>
+    <div class="text-boundary text-wrap">
+        <p>{{climb_log.notes}}</p>
+    </div>
+    <a href="{% url 'user-climb-logs' user_pk=user.pk%}"><button>Go Back</button></a>
+</div>
+{% endblock %}
