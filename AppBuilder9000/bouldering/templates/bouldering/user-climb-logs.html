@@ -13,21 +13,55 @@
     <h2>Welcome back, {{user}}!</h2>
     <a href="{% url 'new-climb-log' user_pk=user.pk %}"><button type="button">New Climb Log</button></a>
     <a><button type="button">Delete a Climb Log</button></a>
-    <table class="log-table">
-        <tr>
-            <th>Date</th>
-            <th>Grade</th>
-            <th>Weather Condition</th>
-            <th>Location</th>
-        </tr>
-        {% for climb in climbs %}
-        <tr>
-            <td>{{climb.date | date:"D d M Y" }}</td>
-            <td>{{climb.grade}}</td>
-            <td>{{climb.weather_condition | capfirst}}</td>
-            <td>{{climb.location}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <p>Select "Clear Filter" to reset the filter selection.</p>
+    <form method="POST"> <!-- Allow the user to filter the grade of the climb -->
+        {% csrf_token %}
+        <label for="grade">grade filter:</label>
+        <select id="grade" name="grade">
+            <option selected disabled>--Select Grade--</option>
+            <option>Clear Filter</option>
+            {% for grade in list_of_grades %}
+            <option>{{grade}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Search</button>
+        <table class="log-table">
+            <tr>
+                <th>Date</th>
+                <th>Grade</th>
+                <th>Weather Condition</th>
+                <th>Location</th>
+            </tr>
+            {% for climb in climbs %}
+            <tr>
+                <td>{{climb.date | date:"D d M Y" }}</td>
+                <td>{{climb.grade}}</td>
+                <td>{{climb.weather_condition | capfirst}}</td>
+                <td>{{climb.location}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if climbs.has_other_pages %}
+        <div class="pagination">
+            {% if climbs.has_previous %}
+            <a href="?page={{climbs.previous_page_number}}">&laquo;</a>
+            {% else %}
+            <a class="disabled">&laquo;</a>
+            {% endif %}
+            {% for i in climbs.paginator.page_range %}
+                {% if climbs.number == i %}
+                <a class="active">{{i}}</a>
+                {% else %}
+                <a href="?page={{i}}">{{i}}</a>
+                {% endif %}
+            {% endfor %}
+            {% if climbs.has_next %}
+            <a href="?page={{climbs.next_page_number}}">&raquo;</a>
+            {% else %}
+            <a class="disabled"><span>&raquo;</span></a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </form>
 </div>
 {% endblock %}

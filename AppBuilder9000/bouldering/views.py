@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, ClimbLogForm
 from .models import User, ClimbLog
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def bouldering_home(request):
     return render(request, 'bouldering/bouldering-home-page.html')
@@ -62,15 +63,40 @@ def new_account(request):
 
 def load_user_climbs(request, user_pk):
     """
-    Loads the user's climbs to a table.
+    Loads the user's climbs to a table while creating a paginator.
 
     :param request:
     :param user_pk: The primary key that identifies the user in the database who logged in.
     :return:
     """
+    list_of_grades = [i[0] for i in ClimbLog.grade.field.choices] # get all available grades in the model for grade-filter
     user_details = get_object_or_404(User, pk=user_pk)
-    user_climbs = ClimbLog.climb_logs.filter(user=user_details).order_by('-date') # order records descending
-    context = {'user': user_details, 'climbs': user_climbs}
+    page = request.GET.get('page', 1) # grab the page number currently displayed on screen
+
+    if request.method == 'POST':
+        # filter search based on grade filter selection
+        # if "Clear Filter" was selected, return all data associated with the user who is logged in.
+        print(request.POST.get('grade'))
+        if request.POST.get('grade') != "Clear Filter":
+            user_climbs = ClimbLog.climb_logs.filter(user=user_pk, grade=request.POST.get('grade')).order_by('-date')  # order records descending
+        else:
+            user_climbs = ClimbLog.climb_logs.filter(user=user_pk).order_by('-date')  # order records descending
+    else:
+        user_climbs = ClimbLog.climb_logs.filter(user=user_pk).order_by('-date')  # order records descending
+    # create the paginator and logic
+    paginator = Paginator(user_climbs, 5)
+    try:
+        user_climb_page = paginator.page(page)
+    except PageNotAnInteger: # handles if the number cannot be converted to an integer
+        user_climb_page = paginator.page(1)
+    except EmptyPage: # raised if the first page is empty
+        user_climb_page = paginator.page(paginator.num_pages)
+
+    context = {
+        'user': user_details,
+        'climbs': user_climb_page,
+        'list_of_grades': list_of_grades,
+    }
     return render(request, 'bouldering/user-climb-logs.html', context)
 
 def create_new_climb_log(request, user_pk):

@@ -206,6 +206,7 @@ td {
 /* *** Footer styling *** */
 
 footer {
+    position: relative;
     margin-top: 1.5vh;
     width: 100%;
     bottom: 0;
@@ -272,6 +273,13 @@ input[type='text']:focus {
     color: rgba(0, 0, 0, 1);
 }
 
+select {
+    font-size: 1vw;
+    border-radius: 5px;
+    padding: 3px 3px 3px 3px; /* padding order: top, right, bottom, left */
+    border: 2px solid black;
+}
+
 /* *** End of Form styling *** */
 
 /* *** Climb Log Styling *** */
@@ -291,6 +299,38 @@ input[type='text']:focus {
 
 .climb-log-container button {
     margin-bottom: 1vh;
+}
+
+#grade {
+    margin-bottom: 2vh;
+}
+
+.climb-log-container p {
+    font-size: 1.25vw;
+}
+
+/* styling for the paginator */
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    font-size: 1vw;
+    float: left;
+    padding: 8px 16px; /* padding order: top and bottom, left and right */
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid black;
+    margin: 4px 4px; /* margin order: top and bottom, left and right */
+}
+
+.pagination a.active {
+    background-color: var(--hover-color);
+}
+
+.pagination a:hover:not(.active){
+    background-color: grey;
 }
 
 /* *** End of Climb Log Styling *** */
