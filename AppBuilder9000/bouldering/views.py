@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserForm, ClimbLogForm
 from .models import User, ClimbLog
@@ -141,3 +143,53 @@ def load_climb_details(request, user_pk, climb_log_pk):
         'climb_log': climb_log,
     }
     return render(request, 'bouldering/climb-log-details.html', context)
+
+def edit_climb_log(request, user_pk, climb_log_pk):
+    """
+    Loads the appropriate page to allow the user to edit or delete the selected climb log.
+
+    :param request:
+    :param user_pk: The primary key that identifies the user in the database who logged in.
+    :param climb_log_pk: The climb log primary key that identifies the climb log.
+    :return:
+    """
+    user_details = get_object_or_404(User, pk=user_pk)
+    climb_log = get_object_or_404(ClimbLog, pk=climb_log_pk)
+    form = ClimbLogForm(data=request.POST or None, instance=climb_log)
+    if request.method == 'POST':
+        updated_climb_log = form.save(commit=False)
+        updated_climb_log.save()
+        return redirect('user-climb-logs', user_pk=user_pk)
+    else:
+        context = {'user': user_details, 'climb_log': climb_log, 'form': form}
+        return render(request, 'bouldering/edit-climb-log.html', context)
+
+def delete_climb_log(request, user_pk, climb_log_pk):
+    """
+    Deletes the selected climb log.
+
+    This function is activated by a JS script in climb-log-details.html.
+
+    :param request:
+    :param user_pk: The primary key that identifies the user in the database who logged in.
+    :param climb_log_pk: The climb log primary key that identifies the climb log.
+    :return:
+    """
+    climb_log = get_object_or_404(ClimbLog, pk=climb_log_pk)
+
+    # if the request is not a post, something happened during the request to delete the climb log.
+    # inform the user of this by setting 'success' to false.
+    if request.method != 'POST':
+        return JsonResponse({'success': False})
+
+    # delete the climb log and have the JavaScript that called this function return user back to the
+    # user's climb logs page
+    climb_log.delete()
+    return JsonResponse(
+        {
+            'success': True,
+            'redirect_url': reverse(
+                'user-climb-logs', kwargs={'user_pk': user_pk}
+            )
+        }
+    )

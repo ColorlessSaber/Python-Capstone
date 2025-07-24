@@ -12,7 +12,6 @@
 <div class="climb-log-container">
     <h2>Welcome back, {{user}}!</h2>
     <a href="{% url 'new-climb-log' user_pk=user.pk %}"><button type="button">New Climb Log</button></a>
-    <a><button type="button">Delete a Climb Log</button></a>
     <p>Select "Clear Filter" to reset the filter selection.</p>
     <form method="POST"> <!-- Allow the user to filter the grade of the climb -->
         {% csrf_token %}

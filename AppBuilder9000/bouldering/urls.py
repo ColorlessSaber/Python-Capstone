@@ -9,4 +9,6 @@ urlpatterns = [
     path('user-<int:user_pk>/climb-logs/', views.load_user_climbs, name='user-climb-logs'),
     path('user-<int:user_pk>/new-climb-log/', views.create_new_climb_log, name='new-climb-log'),
     path('user-<int:user_pk>/climb-log-<int:climb_log_pk>/', views.load_climb_details, name='climb-log-details'),
+    path('user-<int:user_pk>/edit-climb-log-<int:climb_log_pk>/', views.edit_climb_log, name='edit-climb-log'),
+    path('user-<int:user_pk>/delete-climb-log-<int:climb_log_pk>/', views.delete_climb_log, name='delete-climb-log'),
 ]

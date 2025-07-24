@@ -17,6 +17,42 @@
     <div class="text-boundary text-wrap">
         <p>{{climb_log.notes}}</p>
     </div>
-    <a href="{% url 'user-climb-logs' user_pk=user.pk%}"><button>Go Back</button></a>
+    <a href="{% url 'edit-climb-log' user_pk=user.pk climb_log_pk=climb_log.pk %}"><button type="button">Edit Climb Log</button></a>
+    <button type="button" id="confirm-delete">Delete Climb Log</button>
+    <a href="{% url 'user-climb-logs' user_pk=user.pk%}"><button type="button">Go Back</button></a>
 </div>
+<!--
+JS code to open a popup confirmation window before running the view function to delete the climb log.
+
+The Reason why the script is here versus in a file is to use Django's tags to fill in the url link and use
+Django's CSRF token system.
+-->
+<script>
+    document.getElementById("confirm-delete").addEventListener('click', () => {
+
+    if (confirm('Are you sure you want to delete the climb log?')) {
+        fetch(
+            "{% url 'delete-climb-log' user_pk=user.pk climb_log_pk=climb_log.pk %}",
+            {
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': "{{ csrf_token }}",
+                }
+            }
+        )
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect_url; // redirect_url is created in the views.py func delete_climb_log
+            } else {
+                alert('Something happened when trying to delete the climb log. Try again later.');
+            }
+        })
+            .catch(error => {
+                console.log("Error when deleting climb log", error);
+                alert("An error occurred while deleting the climb log. Try again later.");
+            })
+    }
+    });
+</script>
 {% endblock %}
