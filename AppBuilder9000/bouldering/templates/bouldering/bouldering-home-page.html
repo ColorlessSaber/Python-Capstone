@@ -16,49 +16,39 @@
             This site was designed to help people who enjoy outdoor bouldering! From here you can check out the weather
             report at climbing spots across the USA, and log your climbs—the date you climb, the weather condition, the grade
             you climbed.<br>
-            Below, you will find the weather report for locations across the USA. If you wish to log a climb, click the
+            Below, you will find the logged climbs in the past three days. If you wish to log a climb, click the
             “Login” button at the top.<br>
             Thank you for visiting and happy climbing!
         </p>
     </div>
 </section>
-<!-- Weather reports -->
+<!-- Last climbs logged -->
 <section>
-    <div class="row" id="weather">
+    <div class="row" id="last-climb-logged">
         <div class="image-card">
-            <img class="weather-image" src="{% static 'images/bouldering-page-images/girl-windy-day-V2.png' %}">
+            <img src="{% static 'images/bouldering-page-images/climber-art.png' %}" alt="an art picture of a rock climber">
         </div>
         <div class="text-card">
-            <h2>Weather Report</h2>
+            <h2>Latest Recorded Climbs</h2>
             <table>
                 <tr>
                     <th>Date</th>
-                    <th>Location</th>
+                    <th>Grade</th>
                     <th>Weather Condition</th>
+                    <th>Location</th>
+                    <th>User</th>
                 </tr>
+                {% for log in past_logs %}
                 <tr>
-                    <td>dd/mm/yyyy</td>
-                    <td>Oz, Golden Road</td>
-                    <td>Sunshine and Rainbows</td>
+                    <td>{{log.date}}</td>
+                    <td>{{log.grade}}</td>
+                    <td>{{log.weather_condition}}</td>
+                    <td>{{log.location}}</td>
+                    <td>{{log.user}}</td>
                 </tr>
-                <tr>
-                    <td>dd/mm/yyyy</td>
-                    <td>Hyrule, West Continent</td>
-                    <td>Cloud with 90% change of rain</td>
-                </tr>
-                <tr>
-                    <td>dd/mm/yyyy</td>
-                    <td>North Island</td>
-                    <td>Heavy Rain</td>
-                </tr>
-                <tr>
-                    <td>dd/mm/yyyy</td>
-                    <td>Dark side of the Moon</td>
-                    <td>Clear Skies</td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
 </section>
-<!-- TODO add a table that shows the latest climbs logged by users -->
 {% endblock %}

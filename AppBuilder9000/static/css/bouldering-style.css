@@ -159,7 +159,7 @@ nav a:hover {
 
 /* *** End of about section styling *** */
 
-/* *** Weather section cards styling *** */
+/* *** Home page lastest recorded climbs section cards styling *** */
 .row::after {
     content: "";
     display: table;
@@ -174,13 +174,13 @@ nav a:hover {
     float: left;
     width: 50%;
     padding-top: 1.6%;
+    padding-right: 1.5vw;
     height: 700px;
-    padding-left: 1.5vw;
     text-align: center;
 }
 
 .image-card img {
-    width: 75%;
+    width: 60%;
     height: auto;
     object-fit: contain;
 }
@@ -193,7 +193,7 @@ nav a:hover {
     height: 700px;
 }
 
-/* *** End of Weather section cards styling *** */
+/* *** Home page lastest recorded climbs  section cards styling *** */
 
 /* *** Table styling *** */
 
